@@ -5,6 +5,7 @@ import { useAuth } from '@polybase/react';
 import { secp256k1 } from '@polybase/util';
 import { useIsAuthenticated } from '@polybase/react';
 let private_key = secp256k1.generatePrivateKey();
+
 const createSig = (timestamp, body) => {
   const str_to_sign = `${timestamp}.${JSON.stringify(body)}`;
   return secp256k1.sign(private_key, str_to_sign);

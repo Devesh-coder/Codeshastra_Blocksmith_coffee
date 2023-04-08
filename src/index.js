@@ -1,13 +1,24 @@
+/** @format */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ChakraProvider, ColorModeScript, theme } from '@chakra-ui/react';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Web3AuthProvider } from './Biconomy/SocialLoginContext.tsx';
+import { SmartAccountProvider } from './Biconomy/SmartAccountContext.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Web3AuthProvider>
+      <SmartAccountProvider>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </SmartAccountProvider>
+    </Web3AuthProvider>
   </React.StrictMode>
 );
 
