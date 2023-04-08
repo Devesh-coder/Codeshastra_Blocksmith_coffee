@@ -6,6 +6,7 @@ const CoffeeContext = createContext()
 
 export const CoffeeProvider = ({ children }) => {
 	const [db, setDb] = useState(null)
+	const [data, setData] = useState([])
 
 	useEffect(() => {
 		async function coffee() {
@@ -34,13 +35,16 @@ export const CoffeeProvider = ({ children }) => {
 		)
 		const citySnapshot = await getDocs(citiesCol)
 		citySnapshot.docs.map((doc) => {
-			console.log(doc.data()['name'])
+			console.log(doc.data())
+			// setData(...data, doc.data())
+			data.push(doc.data())
 		})
 	}
 	getProducts(db, 'coffee', 'hot')
+	// console.log(data.length)
 
 	return (
-		<CoffeeContext.Provider value={{ getProducts }}>
+		<CoffeeContext.Provider value={{ getProducts, data }}>
 			{children}
 		</CoffeeContext.Provider>
 	)

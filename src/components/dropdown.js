@@ -3,10 +3,11 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-
+import Beans from '../assets/a956990d7460ea47ee54e02768fd7093.svg';
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
+let a = 5000;
 
 export default function Example() {
   return (
@@ -14,8 +15,8 @@ export default function Example() {
       as="div"
       className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          Options
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset">
+          Your Wallet
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
             aria-hidden="true"
@@ -41,7 +42,15 @@ export default function Example() {
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}>
-                  Account settings
+                  <div className="inline-flex">
+                    <img
+                      style={{ width: '40px', height: '25px' }}
+                      src={Beans}
+                    />
+                    <span style={{ paddingRight: '20px' }}>
+                      {a} Ettarra Beans
+                    </span>
+                  </div>
                 </a>
               )}
             </Menu.Item>
@@ -53,10 +62,11 @@ export default function Example() {
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}>
-                  Support
+                  <p className="text-center">My Ettarra NFTs</p>
                 </a>
               )}
             </Menu.Item>
+            {/* 
             <Menu.Item>
               {({ active }) => (
                 <a
@@ -83,8 +93,8 @@ export default function Example() {
                     Sign out
                   </button>
                 )}
-              </Menu.Item>
-            </form>
+              </Menu.Item> */}
+            {/* </form> */}
           </div>
         </Menu.Items>
       </Transition>

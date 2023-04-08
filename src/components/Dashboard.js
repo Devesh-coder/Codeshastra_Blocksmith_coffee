@@ -1,5 +1,7 @@
 import Card from './Card'
 import coffee from '../assets/Kaapicino.png'
+import CoffeeContext from '../context/CoffeeContext'
+import { useContext } from 'react'
 
 function Dashboard() {
 	const products = [
@@ -11,16 +13,18 @@ function Dashboard() {
 			price: 250,
 		},
 	]
+	const { data } = useContext(CoffeeContext)
+	console.log(data)
 
 	return (
 		<div>
-			{products.map((product) => (
+			{data.map((product) => (
 				<Card
-					image={product.image}
+					// image={product.image}
 					name={product.name}
 					quantity={product.quantity}
 					description={product.description}
-					price={product.price}
+					price={product.price[1]}
 				/>
 			))}
 		</div>

@@ -12,6 +12,7 @@ import Beans from '../assets/a956990d7460ea47ee54e02768fd7093.svg'
 import { PolybaseProvider, AuthProvider } from '@polybase/react'
 import { Polybase } from '@polybase/client'
 import { Auth } from '@polybase/auth'
+import Example from './dropdown'
 const navigation = [
 	{ name: 'Product', href: '#' },
 	{ name: 'Loyalty Memberships', href: '/feature' },
@@ -61,8 +62,10 @@ export default function Landing({ logo: Logo }) {
 								))}
 							</div>
 							<div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-								<img style={{ width: '40px', height: '25px' }} src={Beans} />
-								<span style={{ marginRight: '20px' }}>{a} Ettarra Beans</span>
+								<span style={{ marginRight: '20px' }}>
+									{' '}
+									<Example />
+								</span>
 								<Authe />
 							</div>
 						</nav>
