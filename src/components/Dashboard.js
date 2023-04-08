@@ -14,7 +14,6 @@ function Dashboard() {
 
 	return (
 		<div>
-			Dashboard
 			{products.map((product) => (
 				<Card
 					image={product.image}
