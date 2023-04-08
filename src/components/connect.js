@@ -8,7 +8,7 @@ import {
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
-import HomePage from './components/wagmiButton';
+import HomePage from './wagmiButton';
 
 const chains = [arbitrum, mainnet, polygon];
 const projectId = 'e1402daff860df153b2cfd8871692236';
