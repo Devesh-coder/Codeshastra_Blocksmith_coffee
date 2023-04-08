@@ -69,13 +69,20 @@ export default function Landing({ logo: Logo }) {
                   </a>
                 ))}
               </div>
-              <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <div className="hidden lg:flex lg:flex-1 lg:justify-end" onClick={}>
+                <a
+                  href="#"
+                  className="text-sm font-semibold leading-6 text-gray-900">
+                  Log in <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+              {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                 <span style={{ marginRight: '20px' }}>
                   {' '}
                   <Example />
                 </span>
                 <Authe />
-              </div>
+              </div> */}
             </nav>
             <Dialog
               as="div"
