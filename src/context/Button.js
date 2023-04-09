@@ -9,8 +9,8 @@ function Button() {
   return (
     <div>
       <button
-        class="login-with-google-btn"
-        onClick={signInWithGoogle && setSign(true)}>
+              class="login-with-google-btn"
+              onClick={signInWithGoogle}>
         Sign in with Google
       </button>
       <h1> Signed in as {localStorage.getItem('name')}</h1>
