@@ -11,16 +11,16 @@ const includedFeatures = [
 
 const includedFeaturess = [
   '50% off on the Entry Passess at Ettarra events',
-  'Get any Hot Coffee (350ml) for free (worth upto ₹450/-)',
+  'Get any Hot Coffee (350ml) for free (worth upto ₹300/-)',
   'Flat 20% off for All the Products',
   'Official member t-shirt',
 ];
 
 const includedFeaturesss = [
-  'Exclusive access to Try New Products at Ettarra events',
-  'Get 1 Filter Kaapi free',
+  '20% off on Ettarra events passess to try our new Products ',
+  'Get any Hot Coffee (250ml) for free (worth upto ₹300/-)',
   'Flat 10% off for All the Products',
-  'Official member t-shirt',
+  'Eligible to ',
 ];
 
 export default function Elite() {

@@ -7,6 +7,9 @@ const CoffeeContext = createContext()
 export const CoffeeProvider = ({ children }) => {
 	const [db, setDb] = useState(null)
 	const [data, setData] = useState([])
+	const [authentication, setAuthentication] = useState(null)
+	const [loggedIn, setLoggedIn] = useState(false);
+
 
 	useEffect(() => {
 		async function coffee() {
@@ -23,7 +26,9 @@ export const CoffeeProvider = ({ children }) => {
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig)
 			const db = getFirestore(app)
+			const auth = getAuth(app)
 			setDb(db)
+			setAuthentication(auth)
 		}
 		coffee()
 	}, [])
@@ -40,11 +45,23 @@ export const CoffeeProvider = ({ children }) => {
 			data.push(doc.data())
 		})
 	}
-	getProducts(db, 'coffee', 'hot')
-	// console.log(data.length)
+	
+	const handleGoogleLogin = () => {
+    const provider = new authentication.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
 	return (
-		<CoffeeContext.Provider value={{ getProducts, data }}>
+		<CoffeeContext.Provider value={{ getProducts, data, handleGoogleLogin}}>
 			{children}
 		</CoffeeContext.Provider>
 	)
