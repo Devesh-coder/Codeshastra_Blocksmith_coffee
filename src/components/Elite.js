@@ -439,7 +439,7 @@ let a = 5000;
 export default function Elite() {
   const [hen, setHen] = useState(false);
   async function mintNFT() {
-    let a = 15;
+    let a = 23;
 
     // const url = await uploadToIPFS()
     const web3Modal = new Web3Modal();
@@ -701,7 +701,15 @@ export default function Elite() {
             <button
               onClick={mintNFT}
               className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Get access
+              <div className="inline-flex">
+                {' '}
+                Use
+                <img
+                  style={{ width: '40px', height: '25px' }}
+                  src={Beans}
+                />
+                <span style={{ paddingRight: '20px' }}>3000 Ettarra Beans</span>
+              </div>
             </button>
           </div>
         </div>
@@ -757,7 +765,15 @@ export default function Elite() {
             <button
               onClick={mintNFT}
               className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Get access
+              <div className="inline-flex">
+                {' '}
+                Use
+                <img
+                  style={{ width: '40px', height: '25px' }}
+                  src={Beans}
+                />
+                <span style={{ paddingRight: '20px' }}>2000 Ettarra Beans</span>
+              </div>
             </button>
           </div>
         </div>
