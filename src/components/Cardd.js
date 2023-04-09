@@ -11,7 +11,7 @@ export default function Cardd() {
         alt="Sunset in the mountains"
       />
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <div class="font-bold text-xl mb-2">Ettarra Gold Membership NFT</div>
         <p class="text-gray-700 text-base">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium

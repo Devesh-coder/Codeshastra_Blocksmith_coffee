@@ -10,6 +10,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import React from 'react';
+import Cardd from './components/Cardd'
 import Landing from './components/landing';
 import Feature from './components/feature';
 import Team from './components/team';
@@ -48,20 +49,48 @@ function App() {
   } = useSmartAccountContext();
   return (
     // <CoffeeProvider>
-    	<PolybaseProvider polybase={polybase}>
-    		<Router>
-    			<Routes>
-    				<Route path='/' element={<Landing logo={Logo} />} />
-    				<Route path='/feature' element={<Landing logo={Elite} />} />
-				  <Route path='/products' element={<Landing logo={Dashboard } />}/>
-    				<Route path='/team' element={<Team />} />
-    				<Route path='/elite' element={<Elite />} />
-    				<Route path='/leaderboard' element={<Landing logo={Leaderboard} />} />
-    				<Route path='/admin' element={<Admin />} />
-    				<Route path='/dashboard' element={<Landing logo={Dashboard} />} />
-    			</Routes>
-    		</Router>
-    	</PolybaseProvider>
+    <PolybaseProvider polybase={polybase}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<Landing logo={Logo} />}
+          />
+          <Route
+            path="/feature"
+            element={<Landing logo={Elite} />}
+          />
+          <Route
+            path="/products"
+            element={<Landing logo={Dashboard} />}
+          />
+          <Route
+            path="/team"
+            element={<Team />}
+          />
+          <Route
+            path="/elite"
+            element={<Elite />}
+          />
+          <Route
+            path="/leaderboard"
+            element={<Landing logo={Leaderboard} />}
+          />
+          <Route
+            path="/admin"
+            element={<Admin />}
+          />
+          <Route
+            path="/dashboard"
+            element={<Landing logo={Dashboard} />}
+          />
+          <Route
+            path="/myNFTs"
+            element={<Landing logo={Cardd} />}
+          />
+        </Routes>
+      </Router>
+    </PolybaseProvider>
     // {/* </CoffeeProvider> */}
     // <>
     //   <ConnectButton
