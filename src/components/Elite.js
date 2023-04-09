@@ -7,6 +7,7 @@ import gold from '../assets/Screenshot 2023-04-09 090611.png';
 import silver from '../assets/silver.png';
 import { useEffect, useState } from 'react';
 import bronze from '../assets/Bronze.png';
+import Beans from '../assets/a956990d7460ea47ee54e02768fd7093.svg';
 // import bronze from '../assets/bronze.png'
 
 // import LinkNFT from '.../artifacts/contracts/NFTElite.sol/LinkNFT.json';
@@ -434,7 +435,7 @@ const includedFeaturesss = [
   'Get any Hot Coffee (250ml) for free (worth upto ₹300/-)',
   'Flat 10% off for All the Products',
 ];
-
+let a = 5000;
 export default function Elite() {
   const [hen, setHen] = useState(false);
   async function mintNFT() {
@@ -630,7 +631,18 @@ export default function Elite() {
                 disabled={hen}
                 onClick={mintNFT}
                 className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Get access
+                {' '}
+                <div className="inline-flex">
+                  {' '}
+                  Use
+                  <img
+                    style={{ width: '40px', height: '25px' }}
+                    src={Beans}
+                  />
+                  <span style={{ paddingRight: '20px' }}>
+                    {a} Ettarra Beans
+                  </span>
+                </div>
               </button>
               {/* <p className="mt-6 text-xs leading-5 text-gray-900">
                   Invoices and receipts available for easy company reimbursement
@@ -645,8 +657,7 @@ export default function Elite() {
             Silver membership
           </h3>
           <p className="mt-6 text-base leading-7 text-gray-900">
-            Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
-            amet indis perferendis blanditiis repellendus etur quidem assumenda.
+            Get exclusive member Benefits for a Month by Claiming the Ettarra Beans 
           </p>
           <div className="mt-10 flex items-center gap-x-4">
             <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">
