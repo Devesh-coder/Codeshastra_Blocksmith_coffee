@@ -14,6 +14,7 @@ import { Polybase } from '@polybase/client';
 import { Auth } from '@polybase/auth';
 import Example from './dropdown';
 import { useContext } from 'react';
+import Button from '../context/Button';
 // import CoffeeContext from '../context/CoffeeContext';
 
 const navigation = [
@@ -87,7 +88,7 @@ export default function Landing({ logo: Logo }) {
                   {' '}
                   <Example />
                 </span>
-                <Authe />
+                <Button/>
               </div>
             </nav>
             <Dialog

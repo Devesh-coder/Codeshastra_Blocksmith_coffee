@@ -13,20 +13,28 @@ function Dashboard() {
 			price: 250,
 		},
 	]
-	const { data } = useContext(CoffeeContext)
+	const { data, getProducts } = useContext(CoffeeContext)
+	getProducts()
 	console.log(data)
 
 	return (
 		<div>
-			{data.map((product) => (
-				<Card
-					// image={product.image}
-					name={product.name}
-					quantity={product.quantity}
-					description={product.description}
-					price={product.price[1]}
-				/>
-			))}
+			{data.map(
+				(product) => (
+					console.log(Object.keys(product.price)),
+					(
+						<Card
+							image={coffee}
+							name={product.name}
+							quantity_one={Object.keys(product.price)[0]}
+							quantity_two={Object.keys(product.price)[1]}
+							description={product.description}
+							price_one={Object.values(product.price)[0]}
+							price_two={Object.values(product.price)[1]}
+						/>
+					)
+				),
+			)}
 		</div>
 	)
 }
