@@ -88,7 +88,7 @@ export default function Landing({ logo: Logo }) {
                   {' '}
                   <Example />
                 </span>
-                <Button/>
+                <Button />
               </div>
             </nav>
             <Dialog
@@ -168,20 +168,11 @@ export default function Landing({ logo: Logo }) {
               </a>
             </div> */}
             {/* </div> */}
-            <div className="inline-flex">
-              <img
-                style={{ height: '400px', marginRight: '200px' }}
-                src={anna}
-              />
-              <div style={{ width: '400px', height: '400px' }}>
-                {' '}
-                <Logo />
-              </div>
-              <img
-                style={{ height: '400px', marginLeft: '200px' }}
-                src={anna}
-              />
-            </div>
+
+            
+              {' '}
+              <Logo />
+          
 
             <div
               className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
