@@ -28,7 +28,6 @@ export const CoffeeProvider = ({ children }) => {
 			setDb(db)
 		}
 		coffee()
-		console.log('yoyoyoyoyoyo')
 		setIsLoading(false)
 
 		async function getProducts(db, category, subCategory) {
