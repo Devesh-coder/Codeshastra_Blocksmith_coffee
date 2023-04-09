@@ -584,9 +584,8 @@ export default function Elite() {
               Ettarra Gold membership
             </h3>
             <p className="mt-6 text-base leading-7 text-gray-900">
-              Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
-              amet indis perferendis blanditiis repellendus etur quidem
-              assumenda.
+              Be an Ettarra Member by buying/claiming Ettarra Exclusive
+              Memberships
             </p>
             <div className="mt-10 flex items-center gap-x-4">
               <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">
@@ -657,7 +656,8 @@ export default function Elite() {
             Silver membership
           </h3>
           <p className="mt-6 text-base leading-7 text-gray-900">
-            Get exclusive member Benefits for a Month by Claiming the Ettarra Beans 
+            Get exclusive member Benefits for a Month by Claiming the Ettarra
+            Beans
           </p>
           <div className="mt-10 flex items-center gap-x-4">
             <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">
@@ -712,8 +712,8 @@ export default function Elite() {
             Bronze membership
           </h3>
           <p className="mt-6 text-base leading-7 text-gray-900">
-            Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
-            amet indis perferendis blanditiis repellendus etur quidem assumenda.
+            Be an Ettarra Member by buying/claiming Ettarra Exclusive
+            Memberships
           </p>
           <div className="mt-10 flex items-center gap-x-4">
             <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">

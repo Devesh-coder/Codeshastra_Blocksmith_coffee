@@ -10,12 +10,12 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import Cardd from './components/Cardd'
+import Cardd from './components/Cardd';
 import Landing from './components/landing';
 import Feature from './components/feature';
 import Team from './components/team';
 import Elite from './components/Elite';
-import Leaderboard from './components/Leaderboard';
+import LeaderBoard from './components/Leaderboard';
 import Admin from './components/admin';
 import { useSmartAccountContext } from './Biconomy/SmartAccountContext.tsx';
 import { useWeb3AuthContext } from './Biconomy/SocialLoginContext.tsx';
@@ -27,7 +27,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Logo from './components/logo';
 import Dashboard from './components/Dashboard';
 import { CoffeeProvider } from './context/CoffeeContext';
-
 
 const polybase = new Polybase();
 function App() {
@@ -74,7 +73,7 @@ function App() {
           />
           <Route
             path="/leaderboard"
-            element={<Landing logo={Leaderboard} />}
+            element={<Landing logo={LeaderBoard} />}
           />
           <Route
             path="/admin"
