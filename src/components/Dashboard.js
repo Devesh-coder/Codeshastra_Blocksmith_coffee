@@ -13,9 +13,8 @@ function Dashboard() {
 			price: 250,
 		},
 	]
-	const { data, getProducts } = useContext(CoffeeContext)
-	getProducts()
-	console.log(data)
+	const { data } = useContext(CoffeeContext)
+	// console.log(data)
 
 	return (
 		<div>

@@ -28,21 +28,23 @@ export const CoffeeProvider = ({ children }) => {
 			setDb(db)
 		}
 		coffee()
+		console.log('yoyoyoyoyoyo')
 		setIsLoading(false)
-		getProducts(db, 'coffee', 'hot')
-	}, [])
 
-	const getProducts = async (db, category, subCategory) => {
-		const citiesCol = await collection(
-			db,
-			'products/' + category + '/' + subCategory + '/',
-		)
-		const citySnapshot = await getDocs(citiesCol)
-		citySnapshot.docs.map((doc) => {
-			console.log(doc.data())
-			data.push(doc.data())
-		})
-	}
+		async function getProducts(db, category, subCategory) {
+			const citiesCol = await collection(
+				db,
+				'products/' + category + '/' + subCategory + '/',
+			)
+			const citySnapshot = await getDocs(citiesCol)
+			citySnapshot.docs.map(async (doc) => {
+				console.log(doc.data())
+				await data.push(doc.data())
+			})
+		}
+		getProducts(db, 'coffee', 'hot')
+		// getUsers(db)
+	}, [])
 
 	const getUsers = async (db) => {
 		const citiesCol = collection(db, 'users')
@@ -54,12 +56,9 @@ export const CoffeeProvider = ({ children }) => {
 
 		console.log(citySnapshot.docs)
 	}
-	getUsers(db)
 
 	return (
-		<CoffeeContext.Provider value={{ getProducts, data }}>
-			{children}
-		</CoffeeContext.Provider>
+		<CoffeeContext.Provider value={{ data }}>{children}</CoffeeContext.Provider>
 	)
 }
 
