@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
 
 const CoffeeContext = createContext()
 
@@ -30,20 +30,23 @@ export const CoffeeProvider = ({ children }) => {
 		coffee()
 		setIsLoading(false)
 
-		async function getProducts(db, category, subCategory) {
-			const citiesCol = await collection(
-				db,
-				'products/' + category + '/' + subCategory + '/',
-			)
-			const citySnapshot = await getDocs(citiesCol)
-			citySnapshot.docs.map(async (doc) => {
-				console.log(doc.data())
-				await data.push(doc.data())
-			})
-		}
 		getProducts(db, 'coffee', 'hot')
 		// getUsers(db)
 	}, [])
+
+	// const [token, setToken] = useState(0)
+
+	async function getProducts(db, category, subCategory) {
+		const citiesCol = collection(
+			db,
+			'products/' + category + '/' + subCategory + '/',
+		)
+		const citySnapshot = await getDocs(citiesCol)
+		citySnapshot.docs.map(async (doc) => {
+			console.log(doc.data())
+			await data.push(doc.data())
+		})
+	}
 
 	const getUsers = async (db) => {
 		const citiesCol = collection(db, 'users')

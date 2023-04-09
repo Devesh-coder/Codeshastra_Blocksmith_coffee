@@ -21,7 +21,7 @@ const navigation = [
 	{ name: 'Product', href: '/products' },
 	{ name: 'Loyalty Memberships', href: '/feature' },
 	{ name: 'Leaderboard', href: '/leaderboard' },
-	{ name: 'My Ettarra NFTs', href: '#' },
+	{ name: 'My Ettarra NFTs', href: '/MyNFTs' },
 ]
 const polybase = new Polybase()
 const auth = new Auth()

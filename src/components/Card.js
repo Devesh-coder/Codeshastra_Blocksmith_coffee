@@ -1,6 +1,7 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { useEffect } from 'react'
+import { useEffect, useContext, useState } from 'react'
+import CoffeeContext from '../context/CoffeeContext'
 
 function Card({
 	image,
@@ -10,6 +11,7 @@ function Card({
 	description,
 	price_one,
 	price_two,
+	// method,
 }) {
 	let boxVariant = {}
 	const isMobile = window.innerWidth < 700
@@ -25,7 +27,14 @@ function Card({
 			hidden: { opacity: 0, scale: 0, transition: { duration: 0.3 } },
 		}
 	}
+	const [token, setToken] = useState(0)
 
+	const handleClick = () => {
+		setToken(parseInt(token) + parseInt(price_one))
+		console.log(parseInt(token), parseInt(token) + parseInt(price_one))
+	}
+
+	// const method = setToken
 	const control = useAnimation()
 	const [ref, inView] = useInView()
 
@@ -65,7 +74,9 @@ function Card({
 							<p className='price'>Rs. {price_two}</p>
 						</div>
 						<div className='btn'>
-							<button className='cart'> Add to Cart</button>
+							<button className='cart' onClick={handleClick}>
+								Add to Cart
+							</button>
 						</div>
 					</div>
 				</div>

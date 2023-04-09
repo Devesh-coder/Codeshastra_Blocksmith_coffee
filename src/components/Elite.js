@@ -3,6 +3,12 @@ import { ethers } from 'ethers';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import ettarra from '../assets/ettarra.png';
 import Web3Modal from 'web3modal';
+import gold from '../assets/Screenshot 2023-04-09 090611.png';
+import silver from '../assets/silver.png';
+import { useEffect, useState } from 'react';
+import bronze from '../assets/Bronze.png';
+// import bronze from '../assets/bronze.png'
+
 // import LinkNFT from '.../artifacts/contracts/NFTElite.sol/LinkNFT.json';
 
 const LinkNFT = [
@@ -427,32 +433,39 @@ const includedFeaturesss = [
   '20% off on Ettarra events passess to try our new Products ',
   'Get any Hot Coffee (250ml) for free (worth upto ₹300/-)',
   'Flat 10% off for All the Products',
-  'Eligible to ',
 ];
 
 export default function Elite() {
+  const [hen, setHen] = useState(false);
   async function mintNFT() {
+    let a = 15;
+
     // const url = await uploadToIPFS()
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-
+    setHen((hen) => !hen);
     /* next, create the item */
     // const price = ethers.utils.parseUnits(formInput.price, 'ether');
     let contract = new ethers.Contract(
-      0xf2e8ec6bbbeb116d953878820f7f93370ea2ac08,
+      '0xf2e8ec6bbbeb116d953878820f7f93370ea2ac08',
       LinkNFT,
       signer
     );
+    a++;
     // let listingPrice = await contract.getListingPrice()
     // listingPrice = listingPrice.toString()
     let transaction = await contract.mintNFT(
-      1,
+      a,
       'https://ipfs.io/ipfs/QmSNpW4P5e81fcD9usAtyiZ7C26dbM8mzDj8uQBZ3Bd5CR?filename=gold_member.json '
     );
+
     await transaction.wait();
   }
+  useEffect(() => {
+    console.log(hen);
+  }, [hen]);
 
   return (
     //     <div style={{ backgroundColor: 'FFFFFF' }}></div>
@@ -567,7 +580,7 @@ export default function Elite() {
         <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-900 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-              Elite membership
+              Ettarra Gold membership
             </h3>
             <p className="mt-6 text-base leading-7 text-gray-900">
               Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
@@ -596,10 +609,13 @@ export default function Elite() {
               ))}
             </ul>
           </div>
-          <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-            <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-              <div className="mx-auto max-w-xs px-8">
-                <p className="text-base font-semibold text-gray-900">
+          <div className="mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+            <div>
+              <img
+                style={{ height: '350px', borderRadius: '20px' }}
+                src={gold}
+              />{' '}
+              {/* <p className="text-base font-semibold text-gray-900">
                   Pay once, own it forever
                 </p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
@@ -609,16 +625,16 @@ export default function Elite() {
                   <span className="text-sm font-semibold leading-6 tracking-wide text-gray-900">
                     USD
                   </span>
-                </p>
-                <button
-                  onClick={mintNFT}
-                  className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                  Get access
-                </button>
-                <p className="mt-6 text-xs leading-5 text-gray-900">
+                </p> */}
+              <button
+                disabled={hen}
+                onClick={mintNFT}
+                className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Get access
+              </button>
+              {/* <p className="mt-6 text-xs leading-5 text-gray-900">
                   Invoices and receipts available for easy company reimbursement
-                </p>
-              </div>
+                </p> */}
             </div>
           </div>
         </div>
@@ -626,7 +642,7 @@ export default function Elite() {
       <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-900 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
         <div className="p-8 sm:p-10 lg:flex-auto">
           <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-            Gold membership
+            Silver membership
           </h3>
           <p className="mt-6 text-base leading-7 text-gray-900">
             Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
@@ -655,35 +671,34 @@ export default function Elite() {
           </ul>
         </div>
         <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-          <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-            <div className="mx-auto max-w-xs px-8">
-              <p className="text-base font-semibold text-gray-900">
-                Pay once, own it forever
-              </p>
-              <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-gray-900">
-                  $349
-                </span>
-                <span className="text-sm font-semibold leading-6 tracking-wide text-gray-900">
-                  USD
-                </span>
-              </p>
-              <a
-                href="#"
-                className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Get access
-              </a>
-              <p className="mt-6 text-xs leading-5 text-gray-900">
-                Invoices and receipts available for easy company reimbursement
-              </p>
-            </div>
+          <div>
+            <img
+              style={{ height: '350px', borderRadius: '20px' }}
+              src={silver}
+            />{' '}
+            {/* <p className="text-base font-semibold text-gray-900">
+                  Pay once, own it forever
+                </p>
+                <p className="mt-6 flex items-baseline justify-center gap-x-2">
+                  <span className="text-5xl font-bold tracking-tight text-gray-900">
+                    $349
+                  </span>
+                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-900">
+                    USD
+                  </span>
+                </p> */}
+            <button
+              onClick={mintNFT}
+              className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Get access
+            </button>
           </div>
         </div>
       </div>
       <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-900 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
         <div className="p-8 sm:p-10 lg:flex-auto">
           <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-            Silver membership
+            Bronze membership
           </h3>
           <p className="mt-6 text-base leading-7 text-gray-900">
             Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque
@@ -712,28 +727,27 @@ export default function Elite() {
           </ul>
         </div>
         <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-          <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-            <div className="mx-auto max-w-xs px-8">
-              <p className="text-base font-semibold text-gray-900">
-                Pay once, own it forever
-              </p>
-              <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-gray-900">
-                  $349
-                </span>
-                <span className="text-sm font-semibold leading-6 tracking-wide text-gray-900">
-                  USD
-                </span>
-              </p>
-              <a
-                href="#"
-                className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Get access
-              </a>
-              <p className="mt-6 text-xs leading-5 text-gray-900">
-                Invoices and receipts available for easy company reimbursement
-              </p>
-            </div>
+          <div>
+            <img
+              style={{ height: '350px', borderRadius: '20px' }}
+              src={bronze}
+            />{' '}
+            {/* <p className="text-base font-semibold text-gray-900">
+                  Pay once, own it forever
+                </p>
+                <p className="mt-6 flex items-baseline justify-center gap-x-2">
+                  <span className="text-5xl font-bold tracking-tight text-gray-900">
+                    $349
+                  </span>
+                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-900">
+                    USD
+                  </span>
+                </p> */}
+            <button
+              onClick={mintNFT}
+              className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Get access
+            </button>
           </div>
         </div>
       </div>
