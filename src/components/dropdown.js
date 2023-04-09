@@ -1,72 +1,86 @@
 /** @format */
 
-import { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import Beans from '../assets/a956990d7460ea47ee54e02768fd7093.svg';
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Beans from '../assets/a956990d7460ea47ee54e02768fd7093.svg'
+import { auth } from '../context/Firebase'
+import { db } from '../context/Firebase'
+import { collection, getDocs } from 'firebase/firestore'
+import { useState, useEffect } from 'react'
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+	return classes.filter(Boolean).join(' ')
 }
-let a = 5000;
+let a = 5000
 
 export default function Example() {
-  return (
-    <Menu
-      as="div"
-      className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset">
-          Your Wallet
-          <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-        </Menu.Button>
-      </div>
+	const [getBeans, setGetBeans] = useState(0)
+	useEffect(() => {
+		async function getBeans() {
+			const citiesCol = collection(db, 'users')
+			const citySnapshot = await getDocs(citiesCol)
+			citySnapshot.docs.map((doc) => {
+				console.log(doc.data())
+				setGetBeans(doc.data()['coffee_beans'])
+			})
+		}
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95">
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}>
-                  <div className="inline-flex">
-                    <img
-                      style={{ width: '40px', height: '25px' }}
-                      src={Beans}
-                    />
-                    <span style={{ paddingRight: '20px' }}>
-                      {a} Ettarra Beans
-                    </span>
-                  </div>
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}>
-                  <p className="text-center">My Ettarra NFTs</p>
-                </a>
-              )}
-            </Menu.Item>
-            {/* 
+		getBeans()
+	})
+
+	return (
+		<Menu as='div' className='relative inline-block text-left'>
+			<div>
+				<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset'>
+					Your Wallet
+					<ChevronDownIcon
+						className='-mr-1 h-5 w-5 text-gray-400'
+						aria-hidden='true'
+					/>
+				</Menu.Button>
+			</div>
+
+			<Transition
+				as={Fragment}
+				enter='transition ease-out duration-100'
+				enterFrom='transform opacity-0 scale-95'
+				enterTo='transform opacity-100 scale-100'
+				leave='transition ease-in duration-75'
+				leaveFrom='transform opacity-100 scale-100'
+				leaveTo='transform opacity-0 scale-95'
+			>
+				<Menu.Items className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+					<div className='py-1'>
+						<Menu.Item>
+							{({ active }) => (
+								<a
+									href='#'
+									className={classNames(
+										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+										'block px-4 py-2 text-sm',
+									)}
+								>
+									<div className='inline-flex'>
+										<img style={{ width: '40px', height: '25px' }} src={Beans} />
+										<span style={{ paddingRight: '20px' }}>{getBeans} Ettarra Beans</span>
+									</div>
+								</a>
+							)}
+						</Menu.Item>
+						<Menu.Item>
+							{({ active }) => (
+								<a
+									href='#'
+									className={classNames(
+										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+										'block px-4 py-2 text-sm',
+									)}
+								>
+									<p className='text-center'>My Ettarra NFTs</p>
+								</a>
+							)}
+						</Menu.Item>
+						{/* 
             <Menu.Item>
               {({ active }) => (
                 <a
@@ -94,10 +108,10 @@ export default function Example() {
                   </button>
                 )}
               </Menu.Item> */}
-            {/* </form> */}
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  );
+						{/* </form> */}
+					</div>
+				</Menu.Items>
+			</Transition>
+		</Menu>
+	)
 }
