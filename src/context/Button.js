@@ -11,7 +11,7 @@ function Button() {
       <button
               class="login-with-google-btn"
               onClick={signInWithGoogle}>
-        Sign in with Google
+        Change Google Account
       </button>
       <h1> Signed in as {localStorage.getItem('name')}</h1>
 

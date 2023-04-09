@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.6",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
+    "@mui/material": "^5.11.16",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.5",
     "@polybase/auth": "^0.3.39",
