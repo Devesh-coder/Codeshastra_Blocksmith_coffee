@@ -14,20 +14,6 @@ function classNames(...classes) {
 let a = 5000
 
 export default function Example() {
-	const [getBeans, setGetBeans] = useState(0)
-	useEffect(() => {
-		async function getBeans() {
-			const citiesCol = collection(db, 'users')
-			const citySnapshot = await getDocs(citiesCol)
-			citySnapshot.docs.map((doc) => {
-				console.log(doc.data())
-				setGetBeans(doc.data()['coffee_beans'])
-			})
-		}
-
-		getBeans()
-	})
-
 	return (
 		<Menu as='div' className='relative inline-block text-left'>
 			<div>
@@ -62,7 +48,7 @@ export default function Example() {
 								>
 									<div className='inline-flex'>
 										<img style={{ width: '40px', height: '25px' }} src={Beans} />
-										<span style={{ paddingRight: '20px' }}>{getBeans} Ettarra Beans</span>
+										<span style={{ paddingRight: '20px' }}>{a} Ettarra Beans</span>
 									</div>
 								</a>
 							)}
@@ -70,7 +56,7 @@ export default function Example() {
 						<Menu.Item>
 							{({ active }) => (
 								<a
-									href='#'
+									href='/MyNFTs'
 									className={classNames(
 										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
 										'block px-4 py-2 text-sm',

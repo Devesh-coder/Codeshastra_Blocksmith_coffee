@@ -15,15 +15,16 @@ import { Auth } from '@polybase/auth'
 import Example from './dropdown'
 import { useContext } from 'react'
 import Button from '../context/Button'
-import { db, collection } from '../context/Firebase'
+import { db } from '../context/Firebase.js'
 import { auth } from '../context/Firebase'
+import { collection, getDocs } from 'firebase/firestore'
 // import CoffeeContext from '../context/CoffeeContext';
 
 const navigation = [
 	{ name: 'Product', href: '/products' },
 	{ name: 'Loyalty Memberships', href: '/feature' },
 	{ name: 'Leaderboard', href: '/leaderboard' },
-	{ name: 'My Ettarra NFTs', href: '/MyNFTs' },
+	{ name: 'Ettarra Exclusive events', href: '/events' },
 ]
 
 const a = 5000
@@ -31,14 +32,14 @@ export default function Landing({ logo: Logo }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 	// const { handleGoogleLogin } = useContext(CoffeeContext);
 
-	useEffect(async () => {
-		userData = await collection(db, 'users/' + auth.currentUser.uid)
-		userDatadocs = getDocs(userData)
-		console.log(userDatadocs)
-	})
+	// useEffect(async () => {
+	//   const userData = await collection(db, 'users/' + auth.currentUser.uid);
+	//   const userDatadocs = getDocs(userData);
+	//   console.log(userDatadocs);
+	// });
 
 	return (
-		<div style={{ padding: '100px', height: '100%', backgroundColor: '#F2EAE2' }}>
+		<div style={{ padding: '100px', height: 'auto', backgroundColor: '#F2EAE2' }}>
 			<header className='absolute inset-x-0 top-0 z-50'>
 				<nav
 					className='flex items-center justify-between p-6 lg:px-8'
