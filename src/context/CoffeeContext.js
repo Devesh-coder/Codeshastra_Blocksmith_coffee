@@ -7,6 +7,8 @@ const CoffeeContext = createContext()
 export const CoffeeProvider = ({ children }) => {
 	const [db, setDb] = useState(null)
 	const [data, setData] = useState([])
+	const [userLearderbordData, setUserLearderbordData] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		async function coffee() {
@@ -26,22 +28,33 @@ export const CoffeeProvider = ({ children }) => {
 			setDb(db)
 		}
 		coffee()
+		setIsLoading(false)
+		getProducts(db, 'coffee', 'hot')
 	}, [])
 
 	const getProducts = async (db, category, subCategory) => {
-		const citiesCol = collection(
+		const citiesCol = await collection(
 			db,
 			'products/' + category + '/' + subCategory + '/',
 		)
 		const citySnapshot = await getDocs(citiesCol)
 		citySnapshot.docs.map((doc) => {
 			console.log(doc.data())
-			// setData(...data, doc.data())
 			data.push(doc.data())
 		})
 	}
-	getProducts(db, 'coffee', 'hot')
-	// console.log(data.length)
+
+	const getUsers = async (db) => {
+		const citiesCol = collection(db, 'users')
+		const citySnapshot = await getDocs(citiesCol)
+		// citySnapshot.docs.map((doc) => {
+		// 	console.log(doc.data())
+		// 	userLearderbordData.push(doc.data())
+		// })
+
+		console.log(citySnapshot.docs)
+	}
+	getUsers(db)
 
 	return (
 		<CoffeeContext.Provider value={{ getProducts, data }}>

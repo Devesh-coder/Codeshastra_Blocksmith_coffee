@@ -1,4 +1,13 @@
-function Card({ image, name, quantity, description, price }) {
+function Card({
+	image,
+	name,
+	quantity_one,
+	quantity_two,
+	description,
+	price_one,
+	price_two,
+}) {
+	console.log(description.length)
 	return (
 		<div className='container'>
 			<div className='img'>
@@ -7,12 +16,22 @@ function Card({ image, name, quantity, description, price }) {
 
 			<div className='content'>
 				<p className='title'>{name}</p>
-				<p className='quantity'>Quantity: {quantity} ML</p>
 				<p className='type'> 🌟 Bestseller</p>
-				<p className='description'>{description}</p>
+				<p className='description'>
+					{description.substring(0, Math.min(description.length, 50))}
+				</p>
 				<div className='final'>
-					<p className='price'>Rs. {price}</p>
-					<button className='cart'> Add to Cart</button>
+					<div className='first'>
+						<p className='quantity'>{quantity_one} ML</p>
+						<p className='price'>Rs. {price_one}</p>
+					</div>
+					<div className='second'>
+						<p className='quantity'>{quantity_two} ML</p>
+						<p className='price'>Rs. {price_two}</p>
+					</div>
+					<div className='btn'>
+						<button className='cart'> Add to Cart</button>
+					</div>
 				</div>
 			</div>
 		</div>
