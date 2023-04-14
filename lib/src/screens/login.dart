@@ -34,16 +34,18 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
       if (user != null) {
         // You can handle further logic here, e.g. navigate to home screen
       }
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({
-        'name': user!.displayName,
-        'email': user.email,
-        'photoURL': user.photoURL,
-        'uid': user.uid,
-        'coffee_beans': 0,
-      });
+      if (user!.metadata.creationTime == user.metadata.lastSignInTime) {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .set({
+          'name': user.displayName,
+          'email': user.email,
+          'photoURL': user.photoURL,
+          'uid': user.uid,
+          'coffee_beans': 100,
+        });
+      }
     } catch (e) {
       // Handle sign-in error
       print('Error: $e');
@@ -58,24 +60,34 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _isLoading
-                ? const CircularProgressIndicator()
-                : Column(
-                    children: [
-                      Image.asset(
-                        "login.png",
-                      ),
-                      ElevatedButton(
-                        onPressed: _handleGoogleSignIn,
-                        child: const Text('Sign in with Google'),
-                      ),
-                    ],
-                  )
-          ],
-        ),
+        child: _isLoading
+            ? const CircularProgressIndicator()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 6),
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Image.asset(
+                      "assets/images/anna.png",
+                    ),
+                  ),
+
+                  Image.asset(
+                    "assets/images/ettarra.png",
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xffe2c2aa)),
+                      foregroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 0, 0, 0)),
+                    ),
+                    onPressed: _handleGoogleSignIn,
+                    child: const Text('Sign in with Google'),
+                  ),
+                ],
+              ),
       ),
     );
   }

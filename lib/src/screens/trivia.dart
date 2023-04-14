@@ -33,12 +33,13 @@ class _TriviaScreenState extends State<TriviaScreen> {
     String data = await rootBundle.loadString('assets/triviacsv.csv');
     List<List<dynamic>> csvData = const CsvToListConverter().convert(data);
     List<String> listOfRows = csvData.toString().split("\n");
+    listOfRows[0] = listOfRows[0].substring(2, listOfRows[0].length);
 
     for (var row in listOfRows) {
       Map<String, List<String>> temp = {};
       var question = row.split(",")[0];
       List<String> listOfOptions = row.split(",").getRange(1, 6).toList();
-      print('listOfOptions: $listOfOptions');
+      // print('listOfOptions: $listOfOptions');
       temp[question] = listOfOptions;
       _questions.add(temp);
       setState(() {});
@@ -53,86 +54,103 @@ class _TriviaScreenState extends State<TriviaScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xfff2eae2),
-        appBar: index > -1 ? AppBarTop.appBar(const Text("")) : null,
+        appBar: AppBarTop.appBar(const Text("")),
         body: index == -1
-            ? Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1,
-                  left: MediaQuery.of(context).size.width * 0.1,
-                ),
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.6,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: const Color(0xffe2c2aa),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        'Now earn 15 Coffee Beans by just solving a trivia!',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      "Welcome to the Trivia Quiz!",
+                      style: TextStyle(
+                        fontSize: 36,
                       ),
                     ),
-                    SvgPicture.asset(
-                      'assets/images/coffee-bean.svg',
-                      height: MediaQuery.of(context).size.height * 0.25,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: const Color(0xffe2c2aa),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        DocumentSnapshot snap = await FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .get();
-                        if (int.parse(snap['coffee_beans']) <= 10) {
-                          Fluttertoast.showToast(
-                              msg: 'Insufficient Coffee beans');
-                          return;
-                        }
-                        await FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .update({
-                          'coffee_beans':
-                              (int.parse(snap['coffee_beans']) - 10).toString()
-                        });
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Text(
+                            'Now earn 150 Coffee Beans by just solving a trivia!',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          'assets/images/coffee-bean.svg',
+                          height: MediaQuery.of(context).size.height * 0.25,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            DocumentSnapshot snap = await FirebaseFirestore
+                                .instance
+                                .collection('users')
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .get();
+                            if (int.parse(snap['coffee_beans'].toString()) <=
+                                100) {
+                              Fluttertoast.showToast(
+                                  msg: 'Insufficient Coffee beans');
+                              return;
+                            }
+                            await FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .update({
+                              'coffee_beans':
+                                  (int.parse(snap['coffee_beans'].toString()) -
+                                          100)
+                                      .toString()
+                            });
 
-                        setState(() {
-                          index = index + 1;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffab877d),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 32,
-                          vertical: 16,
+                            setState(() {
+                              index = index + 1;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xffab877d),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 16,
+                            ),
+                            textStyle: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          child: const Text("Play Now",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
                         ),
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          height: 8,
                         ),
-                      ),
-                      child: const Text("Play Now",
+                        const Text(
+                          "Stake 100 Coffee Beans right now!",
                           style: TextStyle(
                             color: Colors.white,
-                          )),
+                          ),
+                        ),
+                      ],
                     ),
-                    const Text(
-                      "Stake 10 Coffee Beans right now!",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               )
             : Center(
                 child: ListView(
@@ -156,7 +174,7 @@ class _TriviaScreenState extends State<TriviaScreen> {
                     LinearPercentIndicator(
                       backgroundColor: const Color(0xffE0E8FF),
                       lineHeight: 10.0,
-                      animation: true,
+                      animation: false,
                       alignment: MainAxisAlignment.center,
                       width: MediaQuery.of(context).size.width * 0.8,
                       barRadius: const Radius.circular(40),
@@ -228,7 +246,6 @@ class _TriviaScreenState extends State<TriviaScreen> {
                           ),
                         ),
                         onPressed: () {
-                          print(_questions[index].values.toList());
                           if (selectedOption ==
                               _questions[index].values.toList()[0][4]) {
                             score++;
@@ -245,7 +262,8 @@ class _TriviaScreenState extends State<TriviaScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const TriviaResult(),
+                                builder: (context) =>
+                                    TriviaResult(score: score),
                               ),
                             );
                           }

@@ -1,5 +1,6 @@
 import 'package:codeshastra/src/constants/appbar.dart';
 import 'package:codeshastra/src/screens/lottery.dart';
+import 'package:codeshastra/src/screens/spinwheel.dart';
 import 'package:flutter/material.dart';
 
 class GamesPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _GamesPageState extends State<GamesPage> {
                       ),
                     ),
                     Image.asset(
-                      "assets/images/guess_game.jpg",
+                      "assets/images/guess_game.png",
                       fit: BoxFit.contain,
                       height: 100,
                       width: 100,
@@ -56,31 +57,34 @@ class _GamesPageState extends State<GamesPage> {
                 ),
               )),
           Container(
-            margin: const EdgeInsets.all(20),
-            height: MediaQuery.of(context).size.height * 0.3,
-            width: MediaQuery.of(context).size.width * 0.8,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xffdead84),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text(
-                  "Spin the Whell",
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+              margin: const EdgeInsets.all(20),
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width * 0.8,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xffdead84),
+              ),
+              child: GestureDetector(
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const SpinWheel())),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      "Spin the Whell",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    Image.asset(
+                      "assets/images/spinwheel.png",
+                      fit: BoxFit.contain,
+                      height: 100,
+                      width: 100,
+                    ),
+                  ],
                 ),
-                Image.asset(
-                  "assets/images/guess_game.jpg",
-                  fit: BoxFit.contain,
-                  height: 100,
-                  width: 100,
-                ),
-              ],
-            ),
-          ),
+              )),
         ],
       ),
     );

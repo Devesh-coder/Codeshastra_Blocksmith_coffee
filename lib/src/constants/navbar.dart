@@ -1,4 +1,5 @@
 import 'package:codeshastra/src/screens/games.dart';
+import 'package:codeshastra/src/screens/localandwebobjectsview.dart';
 import 'package:codeshastra/src/screens/trivia.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,7 @@ class _NavBarState extends State<NavBar> {
   final List<Widget> _children = [
     const TriviaScreen(),
     const GamesPage(),
-    // SearchScreen(),
-    // LibraryScreen(flutter lottery slot machine game),
+    const LocalAndWebObjectsView(),
   ];
 
   void onTabTapped(int index) {
@@ -44,11 +44,7 @@ class _NavBarState extends State<NavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
-            label: 'Library',
+            label: 'AR',
           ),
         ],
       ),
